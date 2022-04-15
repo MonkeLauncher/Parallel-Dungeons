@@ -1,0 +1,40 @@
+# Project: Project1
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = main.o code/draw.o code/player.o code/maze.o code/torch.o
+LINKOBJ  = main.o code/draw.o code/player.o code/maze.o code/torch.o
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -L"C:/Users/gryze/OneDrive/Dokumenty/SFML-2.4.2/lib" -mwindows -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-window
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Users/gryze/OneDrive/Dokumenty/SFML-2.4.2/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++" -I"C:/Users/gryze/OneDrive/Dokumenty/SFML-2.4.2/include"
+BIN      = "Paralel Dungeons.exe"
+CXXFLAGS = $(CXXINCS) -std=c++11
+CFLAGS   = $(INCS) -std=c++11
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+code/draw.o: code/draw.cpp
+	$(CPP) -c code/draw.cpp -o code/draw.o $(CXXFLAGS)
+
+code/player.o: code/player.cpp
+	$(CPP) -c code/player.cpp -o code/player.o $(CXXFLAGS)
+
+code/maze.o: code/maze.cpp
+	$(CPP) -c code/maze.cpp -o code/maze.o $(CXXFLAGS)
+
+code/torch.o: code/torch.cpp
+	$(CPP) -c code/torch.cpp -o code/torch.o $(CXXFLAGS)
